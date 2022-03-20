@@ -1,0 +1,169 @@
+body {
+  font-family: "Montserrat";
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+p {
+  color: #8f8f8f;
+}
+
+/* Headings */
+.big-heading {
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+.section-heading {
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+
+/* Container */
+.container-fluid {
+  padding: 3% 15% 7%;
+}
+
+/* Sections */
+.colored-section {
+  background-color: #ff4c68;
+  color: #fff;
+}
+
+.white-section {
+  background-color: #fff;
+}
+
+/* Navigation Bar */
+.navbar {
+  padding: 0 0 3.5rem;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2.5rem;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* Download buttons */
+.download-button {
+  margin: 5% 3% 5% 0%;
+}
+
+/* Title section */
+#title .container-fluid {
+  text-align: left;
+}
+
+.title-image {
+  transform: rotate(25deg);
+  width: 50%;
+  position: absolute;
+  right: 30%
+}
+
+/* Features section */
+#features {
+  position: relative;
+}
+
+#features .container-fluid {
+  padding-bottom: 3%;
+}
+
+.feature-text {
+  font-size: 1.3rem;
+}
+
+.feature-box {
+  padding: 5%;
+}
+
+.icon {
+  color: #ef8172;
+  margin-bottom: 1rem;
+}
+
+.icon:hover {
+  color: #ff4c68;
+}
+
+/* Testimonial section */
+#testimonials {
+  background-color: #ef8172;
+}
+
+.testimonial-text {
+  line-height: 1.5;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+#press {
+  background-color: #ef8172;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+/* Pricing section */
+#pricing {
+  padding: 100px;
+}
+
+.card-header-text {
+  font-size: 1.3rem;
+}
+
+.pricing-text {
+  line-height: 1.5;
+}
+
+.pricing-column {
+  padding: 3% 2%;
+}
+
+/* CTA section */
+#cta .download-button {
+  margin: 5% 1.5% 0;
+}
+
+/* Footer section */
+.copyright-text {
+  margin-top: 5px;
+}
+
+.footer-icon {
+  margin: 20px 10px;
+}
+
+/* Media properties that relate to responsiveness */
+@media (max-width: 1028px) {
+  #title {
+    text-align: center;
+  }
+
+  .title-image {
+    position: static;
+    transform: rotate(0);
+  }
+}
