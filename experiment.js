@@ -1,4 +1,4 @@
-import { Experiment } from '/@amplitude/experiment-js-client';
+import { Experiment } from '/node_modules/@amplitude/experiment-js-client';
 
 // (1) Get your deployment's API key
 const apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv';
