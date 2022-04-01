@@ -8,4 +8,4 @@ const experiment = Experiment.initializeWithAmplitudeAnalytics(apiKey);
 
 // (3) Fetch variants for a user
 
-await experiment.fetch();
+experiment.fetch();
