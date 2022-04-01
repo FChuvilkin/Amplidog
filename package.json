@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@amplitude/experiment-js-client": "^1.4.0"
+  }
+}
