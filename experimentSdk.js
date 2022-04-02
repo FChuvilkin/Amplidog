@@ -13,7 +13,7 @@ function initializeExperiment() {
   var expAssignment = experiment.fetch();
 }
 
-var initExperiment = setTimeout(initializeExperiment, 100);
+var initExperiment = setTimeout(initializeExperiment, 450);
 
 },{"@amplitude/experiment-js-client":2}],2:[function(require,module,exports){
 (function (global){(function (){

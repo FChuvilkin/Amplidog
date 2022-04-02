@@ -14,4 +14,4 @@ const expAssignment = experiment.fetch();
 
 }
 
-const initExperiment = setTimeout(initializeExperiment, 100)
+const initExperiment = setTimeout(initializeExperiment, 450)
