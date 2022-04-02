@@ -2027,12 +2027,16 @@ var _experimentJsClient = require("@amplitude/experiment-js-client");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+// This file initializes both Analytics and Experiment SDKs
+// Import Analytics SDK
+// Import Experiment SDK
 function initializeExperiment() {
+  // Initialize Analytics instance
+  _amplitudeJs["default"].getInstance().init("53d662ed165eae375ae4ade7767e238d"); // Experiment flow
   // (1) Get your deployment's API key
-  var apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv';
 
-  _amplitudeJs["default"].getInstance().init("53d662ed165eae375ae4ade7767e238d"); // (2) Initialize the experiment client
 
+  var apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv'; // (2) Initialize the experiment client
 
   var experiment = _experimentJsClient.Experiment.initializeWithAmplitudeAnalytics(apiKey); // (3) Fetch variants for a user
 
@@ -2041,7 +2045,7 @@ function initializeExperiment() {
   return expAssignment;
 }
 
-var initExperiment = initializeExperiment();
+var initExperiment = initializeExperiment(); // (4) Function that calls variant and create an automatic Exposure event
 
 function showVariant() {
   console.log(initExperiment);
@@ -2051,7 +2055,7 @@ function showVariant() {
     console.log(variant);
 
     if (variant.value === 'treatment') {
-      // Flag is on
+      // Experiment is treatment
       document.querySelector("body").classList.add("inverted");
     } else {// Flag is off
     }
@@ -2354,7 +2358,7 @@ showVariant();
 
           /*
           Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent data.
-          Supports browser & node.js environment. 
+          Supports browser & node.js environment.
           Demo   : https://faisalman.github.io/ua-parser-js
           Source : https://github.com/faisalman/ua-parser-js */
           /////////////////////////////////////////////////////////////////////////////////
@@ -2994,10 +2998,10 @@ showVariant();
         }();
         /*! *****************************************************************************
         Copyright (c) Microsoft Corporation.
-        
+
         Permission to use, copy, modify, and/or distribute this software for any
         purpose with or without fee is hereby granted.
-        
+
         THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
         REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
         AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
@@ -7051,7 +7055,7 @@ showVariant();
      Copyright © 2012-2021 Faisal Salman <f@faisalman.com>
      MIT License *//*
      Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent data.
-     Supports browser & node.js environment. 
+     Supports browser & node.js environment.
      Demo   : https://faisalman.github.io/ua-parser-js
      Source : https://github.com/faisalman/ua-parser-js */
   /////////////////////////////////////////////////////////////////////////////////
@@ -8229,7 +8233,7 @@ showVariant();
 
   	  /*
   	  Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent data.
-  	  Supports browser & node.js environment. 
+  	  Supports browser & node.js environment.
   	  Demo   : https://faisalman.github.io/ua-parser-js
   	  Source : https://github.com/faisalman/ua-parser-js */
   	  /////////////////////////////////////////////////////////////////////////////////
