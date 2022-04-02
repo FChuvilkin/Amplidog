@@ -3,13 +3,17 @@
 
 var _experimentJsClient = require("@amplitude/experiment-js-client");
 
-// (1) Get your deployment's API key
-var apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv'; // (2) Initialize the experiment client
+function initializeExperiment() {
+  // (1) Get your deployment's API key
+  var apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv'; // (2) Initialize the experiment client
 
-var experiment = _experimentJsClient.Experiment.initializeWithAmplitudeAnalytics(apiKey); // (3) Fetch variants for a user
+  var experiment = _experimentJsClient.Experiment.initializeWithAmplitudeAnalytics(apiKey); // (3) Fetch variants for a user
 
 
-experiment.fetch();
+  var expAssignment = experiment.fetch();
+}
+
+var initExperiment = setTimeout(initializeExperiment, 100);
 
 },{"@amplitude/experiment-js-client":2}],2:[function(require,module,exports){
 (function (global){(function (){
