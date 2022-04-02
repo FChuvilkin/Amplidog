@@ -1,6 +1,6 @@
 .DS_Store
-/node_modules/*
 amplitudeInitBrowserify.js
 package-lock.json
 package.json
 babel.config.json
+/node_modules/*
