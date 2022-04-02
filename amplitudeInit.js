@@ -2062,7 +2062,24 @@ function showVariant() {
   });
 }
 
-showVariant();
+showVariant(); // Launch of the second experiment
+
+function showVariant1() {
+  console.log(initExperiment);
+  initExperiment.then(function (experiment) {
+    console.log(experiment);
+    var variant = experiment.variant("link-to-twitter");
+    console.log(variant);
+
+    if (variant.value === 'treatment') {
+      // Experiment is treatment
+      document.getElementById("experiment-header").innerHTML = "You are in treatment group";
+    } else {// Flag is off
+    }
+  });
+}
+
+showVariant1();
 
 },{"@amplitude/experiment-js-client":5,"amplitude-js":6}],5:[function(require,module,exports){
 (function (global){(function (){
@@ -2358,7 +2375,7 @@ showVariant();
 
           /*
           Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent data.
-          Supports browser & node.js environment.
+          Supports browser & node.js environment. 
           Demo   : https://faisalman.github.io/ua-parser-js
           Source : https://github.com/faisalman/ua-parser-js */
           /////////////////////////////////////////////////////////////////////////////////
@@ -2998,10 +3015,10 @@ showVariant();
         }();
         /*! *****************************************************************************
         Copyright (c) Microsoft Corporation.
-
+        
         Permission to use, copy, modify, and/or distribute this software for any
         purpose with or without fee is hereby granted.
-
+        
         THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
         REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
         AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
@@ -7055,7 +7072,7 @@ showVariant();
      Copyright © 2012-2021 Faisal Salman <f@faisalman.com>
      MIT License *//*
      Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent data.
-     Supports browser & node.js environment.
+     Supports browser & node.js environment. 
      Demo   : https://faisalman.github.io/ua-parser-js
      Source : https://github.com/faisalman/ua-parser-js */
   /////////////////////////////////////////////////////////////////////////////////
@@ -8233,7 +8250,7 @@ showVariant();
 
   	  /*
   	  Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent data.
-  	  Supports browser & node.js environment.
+  	  Supports browser & node.js environment. 
   	  Demo   : https://faisalman.github.io/ua-parser-js
   	  Source : https://github.com/faisalman/ua-parser-js */
   	  /////////////////////////////////////////////////////////////////////////////////

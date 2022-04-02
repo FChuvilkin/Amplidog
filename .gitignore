@@ -1,6 +1,8 @@
 .DS_Store
 amplitudeInitBrowserify.js
+eventTrackingBrowserify.js
 package-lock.json
 package.json
 babel.config.json
 /node_modules/*
+commands
