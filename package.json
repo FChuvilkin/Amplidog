@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "@amplitude/experiment-js-client": "^1.4.0"
+    "@amplitude/experiment-js-client": "^1.4.0",
+    "amplitude-js": "^8.18.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
