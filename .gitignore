@@ -1,6 +1,5 @@
 .DS_Store
 package-lock.json
 webpack.config.js
-package.json
 /node_modules/*
 commands
