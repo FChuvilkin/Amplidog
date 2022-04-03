@@ -10,13 +10,16 @@ export function initializeExperiment() {
 
   // (2) Initialize the experiment client
   const experiment = Experiment.initializeWithAmplitudeAnalytics(apiKey);
+  console.log(experiment);
+  console.log(typeof experiment)
   return experiment;
 }
 
 export async function fetchAssignmnets(experiment){
   // (3) Fetch variants for a user
   const all = await experiment.fetch();
-  console.log(all)
+  console.log("Async function returned response");
+  console.log(all);
 }
 
 export function showVariant(experiment, key) {

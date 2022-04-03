@@ -26865,6 +26865,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 function initializeExperiment() {
   // Experiment flow
   // (1) Get your deployment's API key
@@ -26872,6 +26874,8 @@ function initializeExperiment() {
 
   var experiment = _experimentJsClient.Experiment.initializeWithAmplitudeAnalytics(apiKey);
 
+  console.log(experiment);
+  console.log(_typeof(experiment));
   return experiment;
 }
 
@@ -26891,9 +26895,10 @@ function _fetchAssignmnets() {
 
           case 2:
             all = _context.sent;
+            console.log("Async function returned response");
             console.log(all);
 
-          case 4:
+          case 5:
           case "end":
             return _context.stop();
         }
@@ -26937,11 +26942,16 @@ function landingPageJs() {
   if (document.querySelector("body").classList.contains("landing-page")) {
     // Experiment №1 background-color-experiment
     // Apply experiment
-    var variantExp1 = experimenting.showVariant(experiment, "background-color-experiment"); // Act based on variant
+    var variantExp1 = experimenting.showVariant(experiment, "background-color-experiment");
+    console.log("One of the variants will be applied"); // Act based on variant
 
     if (variantExp1.value === 'treatment') {
       document.querySelector("body").classList.add("inverted");
-    } else {// no action
+      console.log("--> treatment applied");
+    } else if (variantExp1.value === 'control') {
+      console.log("control applied");
+    } else {
+      console.log("no variant fatched yet");
     } // Experiment №2 link-to-twitter
     // Apply experiment
 
@@ -26968,6 +26978,6 @@ function secondPageJs() {
 
 landingPageJs();
 secondPageJs();
-console.log("script runs till the end");
+console.log("Script has run till the end");
 
 },{"./eventTracking.js":454,"./experimentInit.js":455,"core-js/stable":452,"regenerator-runtime/runtime":453}]},{},[456]);

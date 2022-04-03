@@ -16,14 +16,17 @@ function landingPageJs() {
     // Experiment №1 background-color-experiment
     // Apply experiment
     const variantExp1 = experimenting.showVariant(experiment, "background-color-experiment");
-
+    console.log("One of the variants will be applied");
     // Act based on variant
     if (variantExp1.value === 'treatment') {
       document.querySelector("body").classList.add("inverted");
-    } else {
-      // no action
+      console.log("--> treatment applied")
     }
-
+    else if (variantExp1.value === 'control') {
+      console.log("control applied")
+    } else {
+      console.log("no variant fatched yet")
+    }
     // Experiment №2 link-to-twitter
     // Apply experiment
     const variantExp2 =
@@ -43,10 +46,11 @@ function secondPageJs() {
     } else {
       document.getElementById("experiment-header").innerHTML = "You are in control group, experiment is working";
     };
-}}
+  }
+}
 
 
 landingPageJs();
 secondPageJs();
 
-console.log("script runs till the end")
+console.log("Script has run till the end")

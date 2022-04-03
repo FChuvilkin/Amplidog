@@ -2299,13 +2299,35 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function initializeExperiment() {
-  // Experiment flow
-  // (1) Get your deployment's API key
-  var apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv'; // (2) Initialize the experiment client
+  return _initializeExperiment.apply(this, arguments);
+}
 
-  var experiment = _experimentJsClient.Experiment.initializeWithAmplitudeAnalytics(apiKey);
+function _initializeExperiment() {
+  _initializeExperiment = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var apiKey, experiment;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            // Experiment flow
+            // (1) Get your deployment's API key
+            apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv'; // (2) Initialize the experiment client
 
-  return experiment;
+            _context.next = 3;
+            return _experimentJsClient.Experiment.initializeWithAmplitudeAnalytics(apiKey);
+
+          case 3:
+            experiment = _context.sent;
+            return _context.abrupt("return", experiment);
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _initializeExperiment.apply(this, arguments);
 }
 
 function fetchAssignmnets(_x) {
@@ -2313,25 +2335,26 @@ function fetchAssignmnets(_x) {
 }
 
 function _fetchAssignmnets() {
-  _fetchAssignmnets = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(experiment) {
+  _fetchAssignmnets = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(experiment) {
     var all;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            _context.next = 2;
+            _context2.next = 2;
             return experiment.fetch();
 
           case 2:
-            all = _context.sent;
+            all = _context2.sent;
+            console.log("Async function returned response");
             console.log(all);
 
-          case 4:
+          case 5:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
   return _fetchAssignmnets.apply(this, arguments);
 }
