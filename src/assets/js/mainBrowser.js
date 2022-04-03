@@ -26936,12 +26936,10 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 tracking.analyticsInit();
 tracking.analyticsTracking();
 var experiment = experimenting.initializeExperiment();
-var expAssignment = experimenting.fetchAssignmnets(experiment);
 
-function landingPageJs() {
-  if (document.querySelector("body").classList.contains("landing-page")) {
-    // Experiment №1 background-color-experiment
-    // Apply experiment
+function fetchAndExpose() {
+  var expAssignment = experimenting.fetchAssignmnets(experiment);
+  expAssignment.then(function (f) {
     var variantExp1 = experimenting.showVariant(experiment, "background-color-experiment");
     console.log("One of the variants will be applied"); // Act based on variant
 
@@ -26952,32 +26950,31 @@ function landingPageJs() {
       console.log("control applied");
     } else {
       console.log("no variant fatched yet");
-    } // Experiment №2 link-to-twitter
-    // Apply experiment
-
-
-    var variantExp2 = document.getElementById("footer-twtr").addEventListener('click', function () {
-      var t = experimenting.showVariant(experiment, "link-to-twitter");
-      localStorage.setItem("link-to-twitter", t.value);
-      return t;
-    });
-  }
-}
-
-function secondPageJs() {
-  if (document.querySelector("body").classList.contains("second-page")) {
-    if (localStorage.getItem("link-to-twitter") === 'treatment') {
-      document.getElementById("experiment-header").innerHTML = "You are in treatment group";
-    } else {
-      document.getElementById("experiment-header").innerHTML = "You are in control group, experiment is working";
     }
-
-    ;
-  }
+  });
 }
 
-landingPageJs();
-secondPageJs();
+function onlyFetch() {
+  var expAssignment = experimenting.fetchAssignmnets(experiment);
+}
+
+function addFirstPageListener() {
+  var variantExp2 = document.getElementById("footer-twtr").addEventListener('click', function () {
+    var t = experimenting.showVariant(experiment, "link-to-twitter");
+    localStorage.setItem("link-to-twitter", t.value);
+    return t;
+  });
+}
+
+if (document.querySelector("body").classList.contains("landing-page")) {
+  fetchAndExpose();
+  addFirstPageListener();
+} else if (document.querySelector("body").classList.contains("second-page")) {
+  onlyFetch();
+} else {
+  console.log("It is not first or second page");
+}
+
 console.log("Script has run till the end");
 
 },{"./eventTracking.js":454,"./experimentInit.js":455,"core-js/stable":452,"regenerator-runtime/runtime":453}]},{},[456]);
