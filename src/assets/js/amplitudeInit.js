@@ -26,7 +26,7 @@ function initializeExperiment() {
   return expAssignment;
 
 }
-const initExperiment = initializeExperiment()
+const initExperiment = initializeExperiment();
 
 
 // (4) Function that calls variant and create an automatic Exposure event
@@ -75,4 +75,11 @@ function showVariant1() {
 
 }
 
-showVariant1();
+// Tracking on a button
+
+document.getElementById("footer-twtr").onclick = function() {
+  amplitude.getInstance().logEvent("Open Social Networks", {
+    "Social_Account": "Twitter"
+  });
+  showVariant1();
+}
