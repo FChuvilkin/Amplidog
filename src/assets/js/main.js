@@ -1,3 +1,6 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
 import * as tracking from "./eventTracking.js";
 import * as experimenting from "./experimentInit.js";
 
