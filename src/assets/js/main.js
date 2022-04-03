@@ -12,27 +12,26 @@ const experiment = experimenting.initializeExperiment();
 function fetchAndExpose() {
   const expAssignment = experimenting.fetchAssignmnets(experiment);
   expAssignment.then(f => {
-      const variantExp1 = experimenting.showVariant(experiment, "background-color-experiment");
-      console.log("One of the variants will be applied");
+    const variantExp1 = experimenting.showVariant(experiment, "background-color-experiment");
+    console.log("One of the variants will be applied");
 
-      // Act based on variant
-      if (variantExp1.value === 'treatment') {
-        document.querySelector("body").classList.add("inverted");
-        console.log("--> treatment applied")
-      } else if (variantExp1.value === 'control') {
-        console.log("control applied")
-      } else {
-        console.log("no variant fatched yet")
-      }
+    // Act based on variant
+    if (variantExp1.value === 'treatment') {
+      document.querySelector("body").classList.add("inverted");
+      console.log("--> treatment applied")
+    } else if (variantExp1.value === 'control') {
+      console.log("control applied")
+    } else {
+      console.log("no variant fatched yet")
     }
-  )
+  })
 }
 
 function onlyFetch() {
   const expAssignment = experimenting.fetchAssignmnets(experiment);
 }
 
-function addFirstPageListener(){
+function addFirstPageListener() {
   const variantExp2 =
     document.getElementById("footer-twtr").addEventListener('click', function() {
       const t = experimenting.showVariant(experiment, "link-to-twitter");
@@ -44,11 +43,16 @@ function addFirstPageListener(){
 if (document.querySelector("body").classList.contains("landing-page")) {
   fetchAndExpose();
   addFirstPageListener();
-} else if (document.querySelector("body").classList.contains("second-page")){
-  onlyFetch()
-}
-  else {
-    console.log("It is not first or second page")
+} else if (document.querySelector("body").classList.contains("second-page")) {
+
+  if (localStorage.getItem("link-to-twitter") === 'treatment') {
+    document.getElementById("experiment-header").innerHTML = "You are in treatment group";
+  } else {
+    document.getElementById("experiment-header").innerHTML = "You are in control group, experiment is working";
+  }
+
+} else {
+  console.log("It is not first or second page")
 }
 
 

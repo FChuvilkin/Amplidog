@@ -26970,7 +26970,11 @@ if (document.querySelector("body").classList.contains("landing-page")) {
   fetchAndExpose();
   addFirstPageListener();
 } else if (document.querySelector("body").classList.contains("second-page")) {
-  onlyFetch();
+  if (localStorage.getItem("link-to-twitter") === 'treatment') {
+    document.getElementById("experiment-header").innerHTML = "You are in treatment group";
+  } else {
+    document.getElementById("experiment-header").innerHTML = "You are in control group, experiment is working";
+  }
 } else {
   console.log("It is not first or second page");
 }
