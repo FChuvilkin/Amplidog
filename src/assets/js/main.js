@@ -14,19 +14,6 @@ const experiment = experimenting.initializeExperiment();
 // Step 2. Fetch variants for all experiments
 const expAssignment = experimenting.fetchAssignmnets(experiment);
 
-// Additional function used for passing Experiment 2 data to local storage
-// Function to track Exposures
-// Not relevant for Experiment 1
-function exposureTrackerExperiment2() {
-  const variantExp2 =
-    document.getElementById("footer-twtr").addEventListener('click', function() {
-      const t = experimenting.showVariant(experiment, "link-to-twitter");
-      localStorage.setItem("link-to-twitter", t.value);
-      return t;
-    });
-}
-
-
 // Instrumenting Experiment 1 (Background color change) on Landing page
 if (document.querySelector("body").classList.contains("landing-page")) {
 
@@ -34,7 +21,7 @@ if (document.querySelector("body").classList.contains("landing-page")) {
   expAssignment.then(f => {
     const variantExp1 = experimenting.showVariant(experiment, "background-color-experiment");
 
-    // Step4. Act based on variant (Experiment 1)
+    // Step 4. Act based on variant (Experiment 1)
     if (variantExp1.value === 'treatment') {
       document.querySelector("body").classList.add("inverted");
       console.log("--> treatment applied")
@@ -47,15 +34,16 @@ if (document.querySelector("body").classList.contains("landing-page")) {
     }
 
   })
-  // Adding exposure tracker aka Step 3 for Experiment 2
-  exposureTrackerExperiment2()
 }
 
 // Instrumenting Experiment 2 (Link to twitter) on second page
 if (document.querySelector("body").classList.contains("second-page")) {
 
-  //Step 4. Act based on the variant
-  if (localStorage.getItem("link-to-twitter") === 'treatment') {
+  // Step 3. Fire exposure event
+  const variantExp2 = experimenting.showVariant(experiment, "link-to-twitter")
+
+  // Step 4. Act based on the variant
+  if (variantExp2.value === 'treatment') {
     document.getElementById("experiment-header").innerHTML = "You are in treatment group";
   } else {
     document.getElementById("experiment-header").innerHTML = "You are in control group, experiment is working";
