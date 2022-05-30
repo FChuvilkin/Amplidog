@@ -5,22 +5,22 @@ import { Experiment } from '@amplitude/experiment-js-client';
 export function initializeExperiment() {
   const apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv';
   const experiment = Experiment.initializeWithAmplitudeAnalytics(apiKey);
-  console.log(experiment);
-  console.log(typeof experiment)
+  // console.log(experiment + "is initialized");
+  // console.log(typeof experiment)
   return experiment;
 }
 
 // Creating a function that fetches experiments for a user
 export async function fetchAssignmnets(experiment){
   const all = await experiment.fetch();
-  console.log("Async function returned response");
-  console.log(all);
+  // console.log("Async function returned response");
+  // console.log(all);
 }
 
 
 // Creating a function that shows variant
 export function showVariant(experiment, key) {
   const variant = experiment.variant(key);
-  console.log(variant);
+  // console.log(variant);
   return variant;
 };

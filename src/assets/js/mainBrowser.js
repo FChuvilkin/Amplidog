@@ -26865,16 +26865,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 // Initialize the experiment client with the API key
 function initializeExperiment() {
   var apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv';
 
-  var experiment = _experimentJsClient.Experiment.initializeWithAmplitudeAnalytics(apiKey);
+  var experiment = _experimentJsClient.Experiment.initializeWithAmplitudeAnalytics(apiKey); // console.log(experiment + "is initialized");
+  // console.log(typeof experiment)
 
-  console.log(experiment);
-  console.log(_typeof(experiment));
+
   return experiment;
 } // Creating a function that fetches experiments for a user
 
@@ -26896,10 +26894,8 @@ function _fetchAssignmnets() {
 
           case 2:
             all = _context.sent;
-            console.log("Async function returned response");
-            console.log(all);
 
-          case 5:
+          case 3:
           case "end":
             return _context.stop();
         }
@@ -26910,8 +26906,8 @@ function _fetchAssignmnets() {
 }
 
 function showVariant(experiment, key) {
-  var variant = experiment.variant(key);
-  console.log(variant);
+  var variant = experiment.variant(key); // console.log(variant);
+
   return variant;
 }
 
@@ -26938,16 +26934,25 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 tracking.analyticsInit();
 tracking.analyticsTracking(); // Step 1. Initializing Experiment using imported function
 
-var experiment = experimenting.initializeExperiment(); // Instrumenting Experiment 1 (Background color change)
-// Fetch and Exposure happen at the same time
+var experiment = experimenting.initializeExperiment(); // Step 2. Fetch variants for all experiments
 
-function fetchAndExpose() {
-  //Step 2. Fetch variants for all experiments
-  var expAssignment = experimenting.fetchAssignmnets(experiment); //Step 3. Show variant for 'Background color' Experiment
+var expAssignment = experimenting.fetchAssignmnets(experiment); // Additional function used for passing Experiment 2 data to local storage
+// Function to track Exposures
+// Not relevant for Experiment 1
 
+function exposureTrackerExperiment2() {
+  var variantExp2 = document.getElementById("footer-twtr").addEventListener('click', function () {
+    var t = experimenting.showVariant(experiment, "link-to-twitter");
+    localStorage.setItem("link-to-twitter", t.value);
+    return t;
+  });
+} // Instrumenting Experiment 1 (Background color change) on Landing page
+
+
+if (document.querySelector("body").classList.contains("landing-page")) {
+  // Step 3. Show variant for 'Background color' Experiment
   expAssignment.then(function (f) {
-    var variantExp1 = experimenting.showVariant(experiment, "background-color-experiment");
-    console.log("One of the variants will be applied"); // Step4. Act based on variant
+    var variantExp1 = experimenting.showVariant(experiment, "background-color-experiment"); // Step4. Act based on variant (Experiment 1)
 
     if (variantExp1.value === 'treatment') {
       document.querySelector("body").classList.add("inverted");
@@ -26957,39 +26962,20 @@ function fetchAndExpose() {
     } else {
       console.log("no variant fatched yet");
     }
-  });
-} // Step 1-2 will already be done by the function above
-// Step 3. Executed by the function below. Calling variant when the twitter button is clicked
+  }); // Adding exposure tracker aka Step 3 for Experiment 2
+
+  exposureTrackerExperiment2();
+} // Instrumenting Experiment 2 (Link to twitter) on second page
 
 
-function addFirstPageListener() {
-  var variantExp2 = document.getElementById("footer-twtr").addEventListener('click', function () {
-    var t = experimenting.showVariant(experiment, "link-to-twitter");
-    localStorage.setItem("link-to-twitter", t.value);
-    return t;
-  });
-} // This script executes the functions on the pages
-
-
-if (document.querySelector("body").classList.contains("landing-page")) {
-  fetchAndExpose();
-  addFirstPageListener();
-} else if (document.querySelector("body").classList.contains("second-page")) {
+if (document.querySelector("body").classList.contains("second-page")) {
   //Step 4. Act based on the variant
   if (localStorage.getItem("link-to-twitter") === 'treatment') {
     document.getElementById("experiment-header").innerHTML = "You are in treatment group";
   } else {
     document.getElementById("experiment-header").innerHTML = "You are in control group, experiment is working";
   }
-} else {
-  console.log("It is not first or second page");
-} // This is Fetch only - currently not used
-
-
-function onlyFetch() {
-  var expAssignment = experimenting.fetchAssignmnets(experiment);
-}
-
-console.log("Script has run till the end");
+} // For debugging
+// console.log("Script has run till the end")
 
 },{"./eventTracking.js":454,"./experimentInit.js":455,"core-js/stable":452,"regenerator-runtime/runtime":453}]},{},[456]);
