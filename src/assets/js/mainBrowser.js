@@ -26867,21 +26867,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
+// Initialize the experiment client with the API key
 function initializeExperiment() {
-  // Experiment flow
-  // (1) Get your deployment's API key
-  var apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv'; // (2) Initialize the experiment client
+  var apiKey = 'client-8zpzwcNEjp3DmsBT2LWd5S7jj6Y7zBqv';
 
   var experiment = _experimentJsClient.Experiment.initializeWithAmplitudeAnalytics(apiKey);
 
   console.log(experiment);
   console.log(_typeof(experiment));
   return experiment;
-}
+} // Creating a function that fetches experiments for a user
+
 
 function fetchAssignmnets(_x) {
   return _fetchAssignmnets.apply(this, arguments);
-}
+} // Creating a function that shows variant
+
 
 function _fetchAssignmnets() {
   _fetchAssignmnets = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(experiment) {
@@ -26933,15 +26934,20 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+// Imported functions to initialize analytics and track all events
 tracking.analyticsInit();
-tracking.analyticsTracking();
-var experiment = experimenting.initializeExperiment();
+tracking.analyticsTracking(); // Step 1. Initializing Experiment using imported function
+
+var experiment = experimenting.initializeExperiment(); // Instrumenting Experiment 1 (Background color change)
+// Fetch and Exposure happen at the same time
 
 function fetchAndExpose() {
-  var expAssignment = experimenting.fetchAssignmnets(experiment);
+  //Step 2. Fetch variants for all experiments
+  var expAssignment = experimenting.fetchAssignmnets(experiment); //Step 3. Show variant for 'Background color' Experiment
+
   expAssignment.then(function (f) {
     var variantExp1 = experimenting.showVariant(experiment, "background-color-experiment");
-    console.log("One of the variants will be applied"); // Act based on variant
+    console.log("One of the variants will be applied"); // Step4. Act based on variant
 
     if (variantExp1.value === 'treatment') {
       document.querySelector("body").classList.add("inverted");
@@ -26952,11 +26958,9 @@ function fetchAndExpose() {
       console.log("no variant fatched yet");
     }
   });
-}
+} // Step 1-2 will already be done by the function above
+// Step 3. Executed by the function below. Calling variant when the twitter button is clicked
 
-function onlyFetch() {
-  var expAssignment = experimenting.fetchAssignmnets(experiment);
-}
 
 function addFirstPageListener() {
   var variantExp2 = document.getElementById("footer-twtr").addEventListener('click', function () {
@@ -26964,12 +26968,14 @@ function addFirstPageListener() {
     localStorage.setItem("link-to-twitter", t.value);
     return t;
   });
-}
+} // This script executes the functions on the pages
+
 
 if (document.querySelector("body").classList.contains("landing-page")) {
   fetchAndExpose();
   addFirstPageListener();
 } else if (document.querySelector("body").classList.contains("second-page")) {
+  //Step 4. Act based on the variant
   if (localStorage.getItem("link-to-twitter") === 'treatment') {
     document.getElementById("experiment-header").innerHTML = "You are in treatment group";
   } else {
@@ -26977,6 +26983,11 @@ if (document.querySelector("body").classList.contains("landing-page")) {
   }
 } else {
   console.log("It is not first or second page");
+} // This is Fetch only - currently not used
+
+
+function onlyFetch() {
+  var expAssignment = experimenting.fetchAssignmnets(experiment);
 }
 
 console.log("Script has run till the end");
